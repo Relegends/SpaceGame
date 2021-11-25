@@ -22,7 +22,7 @@ public class SpaceShipPlayer extends Sprite {
     private double speedFactor;
 
 
-    public SpaceShipPlayer(GameEngine gameEngine){
+    public SpaceShipPlayer(GameEngine gameEngine) {
         super(gameEngine, R.drawable.ship);
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;
@@ -32,7 +32,7 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void initBulletPool(GameEngine gameEngine) {
-        for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
+        for (int i = 0; i < INITIAL_BULLET_POOL_AMOUNT; i++) {
             bullets.add(new Bullet(gameEngine));
         }
     }
@@ -51,7 +51,7 @@ public class SpaceShipPlayer extends Sprite {
 
     @Override
     public void startGame() {
-        positionX = maxX / 2;
+        positionX = 0;
         positionY = maxY / 2;
     }
 
@@ -85,12 +85,11 @@ public class SpaceShipPlayer extends Sprite {
             if (bullet == null) {
                 return;
             }
-            bullet.init(this, positionX + width/2, positionY);
+            bullet.init(this, positionX + width, positionY + height / 2);
             gameEngine.addGameObject(bullet);
             timeSinceLastFire = 0;
             gameEngine.onGameEvent(GameEvent.LaserFired);
-        }
-        else {
+        } else {
             timeSinceLastFire += elapsedMillis;
         }
     }
