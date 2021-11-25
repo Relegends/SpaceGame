@@ -15,7 +15,7 @@ public class Bullet extends Sprite {
     public Bullet(GameEngine gameEngine){
         super(gameEngine, R.drawable.bullet);
 
-        speedFactor = gameEngine.pixelFactor * -300d / 1000d;
+        speedFactor = gameEngine.pixelFactor * 300d / 1000d;
     }
 
     @Override
@@ -23,8 +23,8 @@ public class Bullet extends Sprite {
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
-        positionY += speedFactor * elapsedMillis;
-        if (positionY < -height) {
+        positionX += speedFactor * elapsedMillis;
+        if ((positionX / 100) > width) {
             gameEngine.removeGameObject(this);
             // And return it to the pool
             parent.releaseBullet(this);
