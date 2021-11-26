@@ -18,6 +18,7 @@ import dadm.scaffold.engine.GameView;
 import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.GameController;
 import dadm.scaffold.space.SpaceShipPlayer;
+import dadm.scaffold.space.Tank;
 
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
@@ -49,6 +50,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine));
+                theGameEngine.addGameObject(new Tank(theGameEngine));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
                 theGameEngine.addGameObject(new GameController(theGameEngine));
                 theGameEngine.startGame();

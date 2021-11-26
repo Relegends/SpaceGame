@@ -21,6 +21,9 @@ public class Tank extends Sprite {
         super(gameEngine, R.drawable.ship);
         // We initialize the pool of items now
         initBulletPool(gameEngine);
+
+        positionX = gameEngine.width - 300;
+        positionY = gameEngine.height - 300;
     }
 
     private void initBulletPool(GameEngine gameEngine) {
@@ -31,9 +34,6 @@ public class Tank extends Sprite {
 
     @Override
     public void startGame() {
-        positionX = width/2;
-        positionY = height/2;
-
         currentMillis = 0;
         bulletsFired = 0;
     }
