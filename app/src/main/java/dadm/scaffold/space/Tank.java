@@ -18,14 +18,14 @@ public class Tank extends Sprite {
     private int bulletsFired;
 
     public Tank(GameEngine gameEngine) {
-        super(gameEngine, R.drawable.tank);
+        super(gameEngine, R.drawable.ship);
         // We initialize the pool of items now
         initBulletPool(gameEngine);
     }
 
     private void initBulletPool(GameEngine gameEngine) {
         for (int i = 0; i < INITIAL_BULLET_POOL_AMOUNT; i++) {
-            tankBulletPool.add(new TankBullet(gameEngine));
+            tankBulletPool.add(new TankBullet(this, gameEngine));
         }
     }
 
@@ -60,7 +60,7 @@ public class Tank extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        
+
     }
 
 
