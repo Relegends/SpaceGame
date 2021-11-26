@@ -24,7 +24,7 @@ public class Bullet extends Sprite {
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
         positionX += speedFactor * elapsedMillis;
-        if ((positionX / 100) > width) {
+        if ((positionX) > gameEngine.width) {
             gameEngine.removeGameObject(this);
             // And return it to the pool
             parent.releaseBullet(this);
