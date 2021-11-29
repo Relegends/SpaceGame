@@ -40,7 +40,7 @@ public class Tank extends Sprite {
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
-        elapsedMillis += elapsedMillis;
+        currentMillis += elapsedMillis;
 
         long waveTimestamp = bulletsFired * TIME_BETWEEN_BULLETS;
         if (currentMillis > waveTimestamp) {
