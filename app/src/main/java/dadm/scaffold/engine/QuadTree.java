@@ -8,7 +8,7 @@ import java.util.List;
 public class QuadTree {
 
     private static final int MAX_QUADTREES = 12;
-    private static int MAX_OBJECTS_TO_CHECK = 8;
+    private static int MAX_OBJECTS_TO_CHECK = 2;
 
     private List<ScreenGameObject> gameObjects = new ArrayList<ScreenGameObject>();
     private Rect area = new Rect();
@@ -27,17 +27,17 @@ public class QuadTree {
     }
 
     public void setArea(Rect area) {
-        area.set(area);
+        this.area.set(area);
     }
 
     public void checkObjects(List<ScreenGameObject> gameObjects) {
-        gameObjects.clear();
+        this.gameObjects.clear();
         int numObjects = gameObjects.size();
         for (int i = 0; i < numObjects; i++) {
             ScreenGameObject current = gameObjects.get(i);
             Rect boundingRect = current.mBoundingRect;
             if (Rect.intersects(boundingRect, area)) {
-                gameObjects.add(current);
+                this.gameObjects.add(current);
             }
         }
     }
