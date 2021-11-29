@@ -2,11 +2,16 @@
     <string name="app_name">Scaffold</string>
     <string name="title_activity_main">title</string>
     <string name="hello_world">Hello</string>
-    <string name="pause">Game paused</string>
+    <string name="pause">Pause Game</string>
     <string name="start">Start game</string>
-    <string name="game_title">game title</string>
-    <string name="pause_dialog_title">pause title</string>
-    <string name="pause_dialog_message">pause message</string>
-    <string name="resume">resume</string>
-    <string name="stop">stop</string>
+    <string name="game_title">Paper Aviation</string>
+    <string name="results">Scores!</string>
+    <string name="restart">New game</string>
+    <string name="pause_dialog_title">PAUSED</string>
+    <string name="pause_dialog_message">Remember to dodge the projectiles!</string>
+    <string name="game_over_dialog_title">GAME OVER</string>
+    <string name="game_over_dialog_message">Nice job!</string>
+    <string name="resume">Resume Game</string>
+    <string name="stop">Exit to the menu</string>
+    <string name="see_results">See scores</string>
 </resources>
