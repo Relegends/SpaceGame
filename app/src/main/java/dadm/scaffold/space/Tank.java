@@ -3,6 +3,7 @@ package dadm.scaffold.space;
 import java.util.ArrayList;
 import java.util.List;
 
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -17,7 +18,7 @@ public class Tank extends Sprite {
     private List<TankBullet> tankBulletPool = new ArrayList<TankBullet>();
     private int bulletsFired;
 
-    private int health;
+    public int health;
 
     public Tank(GameEngine gameEngine) {
         super(gameEngine, R.drawable.ship);
@@ -36,7 +37,7 @@ public class Tank extends Sprite {
 
     @Override
     public void startGame() {
-        health = 3;
+        health = 100;
         currentMillis = 0;
         bulletsFired = 0;
     }
@@ -63,12 +64,7 @@ public class Tank extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        if (otherObject instanceof Bullet) {
-            health--;
-            if (health <= 0) {
-                gameEngine.removeGameObject(this);
-            }
-        }
+
     }
 
 

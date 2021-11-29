@@ -21,6 +21,21 @@
         android:layout_height="wrap_content"
         android:text="@string/pause" />
 
-    <include layout="@layout/view_joystick"/>
+    <include
+        layout="@layout/view_joystick"
+        android:layout_height="282dp" />
+
+    <ProgressBar
+        android:id="@+id/tank_health"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="0dp"
+        android:scaleY="3" />
 
 </FrameLayout>
