@@ -108,8 +108,8 @@ public class SpaceShipPlayer extends Sprite {
             TankBullet t = (TankBullet) otherObject;
             t.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.SpaceshipHit);
-        } else if (otherObject instanceof SpaceShipPlayer) {
-            gameEngine.removeGameObject(otherObject);
+        } else if (otherObject instanceof Tank) {
+            gameEngine.removeGameObject(this);
             gameEngine.onGameEvent(GameEvent.SpaceshipHit);
         }
     }

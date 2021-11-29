@@ -17,6 +17,8 @@ public class Tank extends Sprite {
     private List<TankBullet> tankBulletPool = new ArrayList<TankBullet>();
     private int bulletsFired;
 
+    private int health;
+
     public Tank(GameEngine gameEngine) {
         super(gameEngine, R.drawable.ship);
         // We initialize the pool of items now
@@ -34,6 +36,7 @@ public class Tank extends Sprite {
 
     @Override
     public void startGame() {
+        health = 3;
         currentMillis = 0;
         bulletsFired = 0;
     }
@@ -60,7 +63,12 @@ public class Tank extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-
+        if (otherObject instanceof Bullet) {
+            health--;
+            if (health <= 0) {
+                gameEngine.removeGameObject(this);
+            }
+        }
     }
 
 
