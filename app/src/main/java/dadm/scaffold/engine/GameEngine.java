@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
 import dadm.scaffold.sound.SoundManager;
@@ -61,6 +62,7 @@ public class GameEngine {
     public void startGame() {
         // Stop a game if it is running
         stopGame();
+
 
         // Setup the game objects
         int nugameObjects = gameObjects.size();
