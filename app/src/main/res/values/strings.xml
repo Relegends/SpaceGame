@@ -8,6 +8,7 @@
     <string name="select_plane">Select a plane to play</string>
     <string name="empty">Select a plane to play</string>
     <string name="results">Scores!</string>
+    <string name="health">Tank life</string>
     <string name="restart">New game</string>
     <string name="pause_dialog_title">PAUSED</string>
     <string name="pause_dialog_message">Remember to dodge the projectiles!</string>

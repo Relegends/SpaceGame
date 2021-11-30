@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -28,6 +29,118 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/paperBall"
+            android:layout_width="57dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/marbleBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resultsText"
+            app:srcCompat="@drawable/white_paper_ball" />
+
+        <TextView
+            android:id="@+id/paperBallText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/paperclip_bold"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/marbleBlack"
+            app:layout_constraintStart_toEndOf="@+id/paperBall" />
+
+        <ImageView
+            android:id="@+id/marbleBlue"
+            android:layout_width="64dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paperBall"
+            app:srcCompat="@drawable/blue_marble" />
+
+        <ImageView
+            android:id="@+id/marbleBlack"
+            android:layout_width="64dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/marbleBlue"
+            app:layout_constraintTop_toBottomOf="@+id/paperBall"
+            app:srcCompat="@drawable/black_marble" />
+
+        <TextView
+            android:id="@+id/marbleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/paperclip_bold"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintStart_toEndOf="@+id/marbleBlack" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="243dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/hearts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marbleBlue" />
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="124dp"
+            android:fontFamily="@font/paperclip_bold"
+            android:text="@string/health"
+            android:textSize="31sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/progressBar" />
+
+        <ImageView
+            android:id="@+id/hearts"
+            android:layout_width="64dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginBottom="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar"
+            app:srcCompat="@drawable/heart" />
+
+        <TextView
+            android:id="@+id/heartsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/paperclip_bold"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hearts"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+
         <Button
             android:id="@+id/btn_restart"
             android:layout_width="130dp"
@@ -47,6 +160,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
