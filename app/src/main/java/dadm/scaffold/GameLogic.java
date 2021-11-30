@@ -16,6 +16,9 @@ public class GameLogic {
 
     private int playerLives;
 
+    private int paperBallsDestroyed;
+    private int marblesDestroyed;
+
     public GameLogic() {
         isPlaying = false;
         progress = 100;
@@ -31,6 +34,8 @@ public class GameLogic {
         this.progress = 100;
         this.playerLives = 3;
         this.isPlaying = true;
+        paperBallsDestroyed = 0;
+        marblesDestroyed = 0;
     }
 
     public int getLives() {
@@ -113,5 +118,25 @@ public class GameLogic {
             default:
                 return -1;
         }
+    }
+
+    public int getMarblesDestroyed() {
+        return marblesDestroyed;
+    }
+
+    public int getPaperBallsDestroyed() {
+        return paperBallsDestroyed;
+    }
+
+    public int getPlayerLives() {
+        return playerLives;
+    }
+
+    public void addMarbleDestroyed() {
+        marblesDestroyed++;
+    }
+
+    public void addPaperBallDestroyed() {
+        paperBallsDestroyed++;
     }
 }
