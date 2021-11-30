@@ -13,7 +13,9 @@
     <string name="pause_dialog_title">PAUSED</string>
     <string name="pause_dialog_message">Remember to dodge the projectiles!</string>
     <string name="game_over_dialog_title">GAME OVER</string>
-    <string name="game_over_dialog_message">Nice job!</string>
+    <string name="winner_dialog_title">WINNER</string>
+    <string name="game_over_dialog_message">You lose!</string>
+    <string name="winner_dialog_message">Nice job!</string>
     <string name="resume">Resume Game</string>
     <string name="stop">Exit to the menu</string>
     <string name="see_results">See scores</string>

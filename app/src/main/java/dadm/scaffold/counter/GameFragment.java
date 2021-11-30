@@ -169,6 +169,38 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
+    private void winAndShowGameOverDialog() {
+        theGameEngine.pauseGame();
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.winner_dialog_title)
+                .setMessage(R.string.winner_dialog_message)
+                .setPositiveButton(R.string.restart, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        theGameEngine.stopGame();
+                        ((ScaffoldActivity) getActivity()).startGame();
+                    }
+                })
+                .setNegativeButton(R.string.results, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        theGameEngine.stopGame();
+                        ((ScaffoldActivity) getActivity()).stopGame();
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        theGameEngine.resumeGame();
+                    }
+                })
+                .create()
+                .show();
+
+    }
+
     private void playOrPause() {
         Button button = (Button) getView().findViewById(R.id.btn_play_pause);
         if (theGameEngine.isPaused()) {
@@ -204,6 +236,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                     public void run() {
                         if (GameLogic.GAME.getLives() <= 0) {
                             gameOverAndShowGameOverDialog();
+                        } else if (GameLogic.GAME.getProgress() <= 0) {
+                            winAndShowGameOverDialog();
                         }
                     }
                 });
