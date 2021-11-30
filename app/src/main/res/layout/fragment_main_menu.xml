@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
     >
 
     <android.support.constraint.ConstraintLayout
@@ -42,7 +43,7 @@
             android:layout_marginEnd="300dp"
             android:layout_marginRight="300dp"
             android:layout_marginBottom="120dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/holo_orange_dark"
             android:fontFamily="@font/paperclip_med"
             android:text="@string/start"
             android:textColor="@android:color/black"

@@ -1,5 +1,6 @@
 package dadm.scaffold.counter;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
 import android.os.AsyncTask;
@@ -109,8 +110,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
 
     private void pauseGameAndShowPauseDialog() {
         theGameEngine.pauseGame();
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.pause_dialog_title)
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        dialog.setTitle(R.string.pause_dialog_title)
                 .setMessage(R.string.pause_dialog_message)
                 .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
                     @Override
@@ -134,15 +135,17 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                         theGameEngine.resumeGame();
                     }
                 })
-                .create()
-                .show();
+                .create();
+        Dialog dialog1 = dialog.create();
+        dialog1.show();
+        dialog1.getWindow().setBackgroundDrawableResource(android.R.color.holo_orange_light);
 
     }
 
     private void gameOverAndShowGameOverDialog() {
         theGameEngine.pauseGame();
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.game_over_dialog_title)
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        dialog.setTitle(R.string.game_over_dialog_title)
                 .setMessage(R.string.game_over_dialog_message)
                 .setPositiveButton(R.string.restart, new DialogInterface.OnClickListener() {
                     @Override
@@ -166,15 +169,16 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                         theGameEngine.resumeGame();
                     }
                 })
-                .create()
-                .show();
-
+                .create();
+        Dialog dialog1 = dialog.create();
+        dialog1.show();
+        dialog1.getWindow().setBackgroundDrawableResource(android.R.color.holo_orange_light);
     }
 
     private void winAndShowGameOverDialog() {
         theGameEngine.pauseGame();
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.winner_dialog_title)
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        dialog.setTitle(R.string.winner_dialog_title)
                 .setMessage(R.string.winner_dialog_message)
                 .setPositiveButton(R.string.restart, new DialogInterface.OnClickListener() {
                     @Override
@@ -198,8 +202,10 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                         theGameEngine.resumeGame();
                     }
                 })
-                .create()
-                .show();
+                .create();
+        Dialog dialog1 = dialog.create();
+        dialog1.show();
+        dialog1.getWindow().setBackgroundDrawableResource(android.R.color.holo_orange_light);
 
     }
 
