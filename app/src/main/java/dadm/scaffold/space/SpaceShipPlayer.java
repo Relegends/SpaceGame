@@ -155,8 +155,7 @@ public class SpaceShipPlayer extends Sprite {
         if (GameLogic.GAME.getPlayerIkarugaState() != ikarugaState) {
             ikarugaState = GameLogic.GAME.getPlayerIkarugaState();
             changeDrawable(gameEngine, GameLogic.GAME.getDrawable());
-
-            //gameEngine.onGameEvent(GameEvent.AsteroidHitBomb);
+            gameEngine.onGameEvent(GameEvent.Ikaruga);
         } else {
             timeSinceLastBomb += elapsedMillis;
         }

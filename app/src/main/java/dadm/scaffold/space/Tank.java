@@ -48,7 +48,7 @@ public class Tank extends Sprite {
 
         long waveTimestamp = bulletsFired * TIME_BETWEEN_BULLETS;
         if (currentMillis > waveTimestamp) {
-            // Spawn a new enemy
+            // Spawn a new bullet
             TankBullet t = tankBulletPool.remove(0);
             t.init(gameEngine, positionX, positionY);
             gameEngine.addGameObject(t);
