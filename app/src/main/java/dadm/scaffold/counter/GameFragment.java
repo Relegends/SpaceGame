@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.GameLogic;
@@ -29,6 +32,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
 
     private ProgressBar progressBar;
+    private TextView lives;
+    private Integer printLives;
     private Handler mHandler = new Handler();
 
     public GameFragment() {
@@ -46,6 +51,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_play_pause).setOnClickListener(this);
         progressBar = view.findViewById(R.id.tank_health);
+        lives = view.findViewById(R.id.livesHUD);
         final ViewTreeObserver observer = view.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -64,28 +70,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.startGame();
             }
         });
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(final Void... params) {
-                while (GameLogic.GAME.getProgress() >= 0) {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(GameLogic.GAME.getProgress());
-                        }
-                    });
-                }
-                return null;
-            }
-
-        }.execute();
-
-
+        GameLogic.GAME.resetProgress();
+        asyncTask();
     }
 
     @Override
@@ -107,6 +93,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
         theGameEngine.stopGame();
+        GameLogic.GAME.isPlaying = false;
     }
 
     @Override
@@ -135,7 +122,40 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         theGameEngine.stopGame();
+                        GameLogic.GAME.isPlaying = false;
                         ((ScaffoldActivity) getActivity()).returnToMenu();
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        theGameEngine.resumeGame();
+                    }
+                })
+                .create()
+                .show();
+
+    }
+
+    private void gameOverAndShowGameOverDialog() {
+        theGameEngine.pauseGame();
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.game_over_dialog_title)
+                .setMessage(R.string.game_over_dialog_message)
+                .setPositiveButton(R.string.restart, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        theGameEngine.stopGame();
+                        ((ScaffoldActivity) getActivity()).startGame();
+                    }
+                })
+                .setNegativeButton(R.string.results, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        theGameEngine.stopGame();
+                        ((ScaffoldActivity) getActivity()).stopGame();
                     }
                 })
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -158,6 +178,40 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
             theGameEngine.pauseGame();
             button.setText(R.string.resume);
         }
+    }
+
+    private void asyncTask() {
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(final Void... params) {
+                while (GameLogic.GAME.getProgress() >= 0 && GameLogic.GAME.getLives() > 0 && GameLogic.GAME.isPlaying) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(GameLogic.GAME.getProgress());
+                            printLives = new Integer(GameLogic.GAME.getLives());
+                            lives.setText(printLives.toString());
+                        }
+                    });
+                }
+
+                mHandler.post(new Runnable() {
+                    public void run() {
+                        if (GameLogic.GAME.getLives() <= 0) {
+                            gameOverAndShowGameOverDialog();
+                        }
+                    }
+                });
+
+                return null;
+            }
+
+        }.execute();
     }
 
 }
