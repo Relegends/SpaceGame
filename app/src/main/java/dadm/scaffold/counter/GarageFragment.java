@@ -1,40 +1,38 @@
 package dadm.scaffold.counter;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
 
 
-public class MainMenuFragment extends BaseFragment {
+public class GarageFragment extends BaseFragment {
 
-    Button starbtn, resultsbtn;
+    ImageButton planeA, planeB;
 
-    public MainMenuFragment() {
+    public GarageFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_garage, container, false);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        starbtn = view.findViewById(R.id.btn_start);
-        resultsbtn = view.findViewById(R.id.btn_results);
-        starbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).moveToGarage());
-        resultsbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).stopGame());
+        planeA = view.findViewById(R.id.planebtnA);
+        planeB = view.findViewById(R.id.planebtnB);
+        planeA.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).startGame());
+        planeB.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).startGame());
     }
 }
