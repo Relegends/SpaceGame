@@ -17,13 +17,13 @@
         android:orientation="vertical">
 
         <View
-            android:id="@+id/joystick_touch_bomb"
+            android:id="@+id/joystick_touch_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <View
-            android:id="@+id/joystick_touch_fire"
+            android:id="@+id/joystick_touch_bomb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
