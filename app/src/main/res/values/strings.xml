@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Scaffold</string>
+    <string name="app_name">Paper Aviation</string>
     <string name="title_activity_main">title</string>
     <string name="hello_world">Hello</string>
     <string name="pause">Pause Game</string>
