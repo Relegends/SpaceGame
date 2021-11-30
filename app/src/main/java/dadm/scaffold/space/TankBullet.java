@@ -1,5 +1,6 @@
 package dadm.scaffold.space;
 
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -20,7 +21,7 @@ public class TankBullet extends Sprite {
     long currentTime;
 
     public TankBullet(Tank tank, GameEngine gameEngine) {
-        super(gameEngine, R.drawable.blue_marble);
+        super(gameEngine, GameLogic.GAME.getDrawableMarble());
         this.tank = tank;
         currentTime = 0;
     }

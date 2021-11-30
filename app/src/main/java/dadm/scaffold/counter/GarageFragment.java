@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import dadm.scaffold.BaseFragment;
+import dadm.scaffold.GameLogic;
+import dadm.scaffold.IkarugaState;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
 
@@ -32,7 +34,15 @@ public class GarageFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         planeA = view.findViewById(R.id.planebtnA);
         planeB = view.findViewById(R.id.planebtnB);
-        planeA.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).startGame());
-        planeB.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).startGame());
+        planeA.setOnClickListener(v -> {
+            GameLogic.GAME.setPlayerIkarugaState(IkarugaState.RED);
+            GameLogic.GAME.setMarbleIkarugaState(IkarugaState.BLUE);
+            GameLogic.GAME.setPaperBallIkarugaState(IkarugaState.RED);
+            ((ScaffoldActivity)getActivity()).startGame();});
+        planeB.setOnClickListener(v -> {
+            GameLogic.GAME.setPlayerIkarugaState(IkarugaState.WHITE);
+            GameLogic.GAME.setMarbleIkarugaState(IkarugaState.BLACK);
+            GameLogic.GAME.setPaperBallIkarugaState(IkarugaState.WHITE);
+            ((ScaffoldActivity)getActivity()).startGame();});
     }
 }
