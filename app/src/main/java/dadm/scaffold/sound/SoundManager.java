@@ -49,16 +49,21 @@ public final class SoundManager {
 	private void loadSounds() {
 		createSoundPool();
 		soundsMap = new HashMap<GameEvent, Integer>();
-		loadEventSound(context, GameEvent.AsteroidHit, "Asteroid_explosion_1.wav");
-		loadEventSound(context, GameEvent.SpaceshipHit, "Spaceship_explosion.wav");
-		loadEventSound(context, GameEvent.LaserFired, "Laser_shoot.wav");
+		loadEventSound(context, GameEvent.AsteroidHitBomb, "hitBomb.wav");
+		loadEventSound(context, GameEvent.AsteroidHit, "meteorHit.wav");
+
+		loadEventSound(context, GameEvent.SpaceshipHit, "damagePlane.wav");
+		loadEventSound(context, GameEvent.LaserFired, "shot.wav");
+
+		loadEventSound(context, GameEvent.GameOver, "lose.wav");
+
 	}
 
 	private void loadMusic() {
 		try {
 			// Important to not reuse it. It can be on a strange state
 			bgPlayer = new MediaPlayer();
-			AssetFileDescriptor afd = context.getAssets().openFd("sfx/Riccardo_Colombo_-_11_-_Something_mental.mp3");
+			AssetFileDescriptor afd = context.getAssets().openFd("sfx/Chase8bit.mp3");
 			bgPlayer.setDataSource(afd.getFileDescriptor(),
 					afd.getStartOffset(), afd.getLength());
 			bgPlayer.setLooping(true);

@@ -79,7 +79,7 @@ public class Bomb extends Sprite {
             removeObject(gameEngine);
             Asteroid a = (Asteroid) otherObject;
             a.removeObject(gameEngine);
-            gameEngine.onGameEvent(GameEvent.AsteroidHit);
+            gameEngine.onGameEvent(GameEvent.AsteroidHitBomb);
             // Add some score
         }
         else if (otherObject instanceof Tank) {
