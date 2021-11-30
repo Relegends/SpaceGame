@@ -20,7 +20,7 @@ public class TankBullet extends Sprite {
     long currentTime;
 
     public TankBullet(Tank tank, GameEngine gameEngine) {
-        super(gameEngine, R.drawable.a10000);
+        super(gameEngine, R.drawable.blue_marble);
         this.tank = tank;
         currentTime = 0;
     }
