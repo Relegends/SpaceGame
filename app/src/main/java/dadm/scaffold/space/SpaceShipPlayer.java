@@ -18,6 +18,7 @@ public class SpaceShipPlayer extends Sprite {
     private static final long TIME_BETWEEN_BULLETS = 500;
     private static final long TIME_BETWEEN_BOMBS = 3000;
     List<Bullet> bullets = new ArrayList<Bullet>();
+    List<InverseBullet> inverseBullets = new ArrayList<InverseBullet>();
     List<Bomb> bombs = new ArrayList<Bomb>();
     private long timeSinceLastFire;
 
@@ -44,11 +45,18 @@ public class SpaceShipPlayer extends Sprite {
 
         initBulletPool(gameEngine);
         initBombPool(gameEngine);
+        initInverseBulletPool(gameEngine);
     }
 
     private void initBulletPool(GameEngine gameEngine) {
         for (int i = 0; i < INITIAL_BULLET_POOL_AMOUNT; i++) {
             bullets.add(new Bullet(gameEngine));
+        }
+    }
+
+    private void initInverseBulletPool(GameEngine gameEngine) {
+        for (int i = 0; i < INITIAL_BULLET_POOL_AMOUNT; i++) {
+            inverseBullets.add(new InverseBullet(gameEngine));
         }
     }
 
@@ -65,6 +73,13 @@ public class SpaceShipPlayer extends Sprite {
         return bullets.remove(0);
     }
 
+    private InverseBullet getInverseBullet() {
+        if (inverseBullets.isEmpty()) {
+            return null;
+        }
+        return inverseBullets.remove(0);
+    }
+
     private Bomb getBomb() {
         if (bombs.isEmpty()) {
             return null;
@@ -74,6 +89,10 @@ public class SpaceShipPlayer extends Sprite {
 
     void releaseBullet(Bullet bullet) {
         bullets.add(bullet);
+    }
+
+    void releaseBullet(InverseBullet bullet) {
+        inverseBullets.add(bullet);
     }
 
     void releaseBomb(Bomb bomb) {
@@ -119,14 +138,26 @@ public class SpaceShipPlayer extends Sprite {
 
     private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
         if (timeSinceLastFire > TIME_BETWEEN_BULLETS) {
-            Bullet bullet = getBullet();
-            if (bullet == null) {
-                return;
+            if (GameLogic.GAME.getPlayerIkarugaState() == IkarugaState.RED || GameLogic.GAME.getPlayerIkarugaState() == IkarugaState.WHITE)
+            {
+                Bullet bullet = getBullet();
+                if (bullet == null) {
+                    return;
+                }
+                bullet.init(this, positionX + width, positionY + height / 2);
+                gameEngine.addGameObject(bullet);
+                timeSinceLastFire = 0;
+                gameEngine.onGameEvent(GameEvent.LaserFired);
+            } else {
+                InverseBullet bullet = getInverseBullet();
+                if (bullet == null) {
+                    return;
+                }
+                bullet.init(this, positionX + width, positionY + height / 2);
+                gameEngine.addGameObject(bullet);
+                timeSinceLastFire = 0;
+                gameEngine.onGameEvent(GameEvent.LaserFired);
             }
-            bullet.init(this, positionX + width, positionY + height / 2);
-            gameEngine.addGameObject(bullet);
-            timeSinceLastFire = 0;
-            gameEngine.onGameEvent(GameEvent.LaserFired);
         } else {
             timeSinceLastFire += elapsedMillis;
             timeSinceLastBomb += elapsedMillis;
