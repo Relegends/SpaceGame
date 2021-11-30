@@ -1,9 +1,12 @@
 package dadm.scaffold.space;
 
+import android.graphics.drawable.BitmapDrawable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.GameLogic;
+import dadm.scaffold.IkarugaState;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -27,6 +30,8 @@ public class SpaceShipPlayer extends Sprite {
 
     private long timeSinceLastBomb;
 
+    private IkarugaState ikarugaState;
+
 
     private int maxX;
     private int maxY;
@@ -34,7 +39,8 @@ public class SpaceShipPlayer extends Sprite {
 
 
     public SpaceShipPlayer(GameEngine gameEngine) {
-        super(gameEngine, R.drawable.red_plane);
+        super(gameEngine, GameLogic.GAME.getDrawable());
+        ikarugaState = GameLogic.GAME.getPlayerIkarugaState();
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;
         maxY = gameEngine.height - height;
@@ -94,6 +100,7 @@ public class SpaceShipPlayer extends Sprite {
 
         checkFiringBomb(elapsedMillis, gameEngine);
 
+        checkIkarugaState(elapsedMillis, gameEngine);
     }
 
     private void updatePosition(long elapsedMillis, InputController inputController) {
@@ -144,14 +151,27 @@ public class SpaceShipPlayer extends Sprite {
         }
     }
 
+    private void checkIkarugaState(long elapsedMillis, GameEngine gameEngine) {
+        if (GameLogic.GAME.getPlayerIkarugaState() != ikarugaState) {
+            ikarugaState = GameLogic.GAME.getPlayerIkarugaState();
+            changeDrawable(gameEngine, GameLogic.GAME.getDrawable());
+
+            //gameEngine.onGameEvent(GameEvent.AsteroidHitBomb);
+        } else {
+            timeSinceLastBomb += elapsedMillis;
+        }
+    }
+
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
         if (otherObject instanceof Asteroid) {
+            if (ikarugaState == IkarugaState.RED || ikarugaState == IkarugaState.WHITE) return;
             Asteroid a = (Asteroid) otherObject;
             a.removeObject(gameEngine);
             checkDamage(gameEngine);
         } else if (otherObject instanceof TankBullet) {
+            if (ikarugaState == IkarugaState.BLUE || ikarugaState == IkarugaState.BLACK) return;
             TankBullet t = (TankBullet) otherObject;
             t.removeObject(gameEngine);
             checkDamage(gameEngine);

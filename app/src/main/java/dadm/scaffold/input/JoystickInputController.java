@@ -3,6 +3,7 @@ package dadm.scaffold.input;
 import android.view.MotionEvent;
 import android.view.View;
 
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.R;
 
 public class JoystickInputController extends InputController {
@@ -63,10 +64,7 @@ public class JoystickInputController extends InputController {
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getActionMasked();
             if (action == MotionEvent.ACTION_DOWN) {
-                isFiringBullet = true;
-            }
-            else if (action == MotionEvent.ACTION_UP) {
-                isFiringBullet = false;
+                GameLogic.GAME.changeIkarugaState();
             }
             return true;
         }
