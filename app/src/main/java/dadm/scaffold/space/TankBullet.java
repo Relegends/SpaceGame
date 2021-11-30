@@ -10,12 +10,10 @@ public class TankBullet extends Sprite {
 
     private Tank tank;
 
-    private double speed;
     private double speedX;
     private double speedY;
     private double rotationSpeed;
 
-    private double angle;
     private double gravity;
 
     long currentTime;
@@ -43,7 +41,7 @@ public class TankBullet extends Sprite {
         positionY = initPositionY;
         // They initialize in a [-30, 30] degrees angle
         speedX = -1;
-        speedY = -gameEngine.random.nextFloat() - 0.5f;
+        speedY = -gameEngine.random.nextFloat() - 0.1f;
         // They rotate 4 times their angle in a second.
         double angle = gameEngine.random.nextDouble()*Math.PI/3d-Math.PI/6d;
         rotationSpeed = angle * (180d / Math.PI) / 250d;
