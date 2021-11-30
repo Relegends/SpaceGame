@@ -41,6 +41,7 @@ public class ScaffoldActivity extends AppCompatActivity {
     }
 
     public void moveToGarage() {
+        // Navigate the the garage to select a plane to play
         navigateToFragment(new GarageFragment());
     }
 
