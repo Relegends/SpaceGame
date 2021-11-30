@@ -1,13 +1,10 @@
 package dadm.scaffold.space;
 
-import android.graphics.drawable.BitmapDrawable;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.GameLogic;
 import dadm.scaffold.IkarugaState;
-import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
@@ -39,7 +36,7 @@ public class SpaceShipPlayer extends Sprite {
 
 
     public SpaceShipPlayer(GameEngine gameEngine) {
-        super(gameEngine, GameLogic.GAME.getDrawable());
+        super(gameEngine, GameLogic.GAME.getDrawablePlane());
         ikarugaState = GameLogic.GAME.getPlayerIkarugaState();
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;
@@ -154,7 +151,7 @@ public class SpaceShipPlayer extends Sprite {
     private void checkIkarugaState(long elapsedMillis, GameEngine gameEngine) {
         if (GameLogic.GAME.getPlayerIkarugaState() != ikarugaState) {
             ikarugaState = GameLogic.GAME.getPlayerIkarugaState();
-            changeDrawable(gameEngine, GameLogic.GAME.getDrawable());
+            changeDrawable(gameEngine, GameLogic.GAME.getDrawablePlane());
             gameEngine.onGameEvent(GameEvent.Ikaruga);
         } else {
             timeSinceLastBomb += elapsedMillis;

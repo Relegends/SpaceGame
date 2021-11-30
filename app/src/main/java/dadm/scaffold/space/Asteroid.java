@@ -1,5 +1,6 @@
 package dadm.scaffold.space;
 
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -15,7 +16,7 @@ public class Asteroid extends Sprite {
     private double rotationSpeed;
 
     public Asteroid(GameController gameController, GameEngine gameEngine) {
-        super(gameEngine, R.drawable.white_paper_ball);
+        super(gameEngine, GameLogic.GAME.getDrawablePaperBall());
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
     }
