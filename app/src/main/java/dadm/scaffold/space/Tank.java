@@ -21,12 +21,12 @@ public class Tank extends Sprite {
     public int health;
 
     public Tank(GameEngine gameEngine) {
-        super(gameEngine, R.drawable.ship);
+        super(gameEngine, R.drawable.tank);
         // We initialize the pool of items now
         initBulletPool(gameEngine);
 
-        positionX = gameEngine.width - 300;
-        positionY = gameEngine.height - 300;
+        positionX = gameEngine.width/2 + 300;
+        positionY = gameEngine.height/2 + 100;
     }
 
     private void initBulletPool(GameEngine gameEngine) {
