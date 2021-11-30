@@ -9,9 +9,23 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         />
-    <View android:id="@+id/joystick_touch"
-        android:layout_height="match_parent"
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        />
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/joystick_touch_bomb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <View
+            android:id="@+id/joystick_touch_fire"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>
