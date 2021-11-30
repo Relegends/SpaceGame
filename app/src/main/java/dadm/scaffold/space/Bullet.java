@@ -1,5 +1,6 @@
 package dadm.scaffold.space;
 
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -53,6 +54,16 @@ public class Bullet extends Sprite {
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
             // Add some score
+        }
+        else if (otherObject instanceof Tank) {
+            removeObject(gameEngine);
+            Tank t = (Tank) otherObject;
+            t.health--;
+            GameLogic.GAME.setProgress(t.health);
+            if (t.health <= 0) {
+                gameEngine.removeGameObject(otherObject);
+                //Add sound
+            }
         }
     }
 }

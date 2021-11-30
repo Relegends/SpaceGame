@@ -2,14 +2,18 @@ package dadm.scaffold.counter;
 
 import android.content.DialogInterface;
 import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import dadm.scaffold.BaseFragment;
+import dadm.scaffold.GameLogic;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
 import dadm.scaffold.engine.FramesPerSecondCounter;
@@ -23,6 +27,9 @@ import dadm.scaffold.space.Tank;
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
+
+    private ProgressBar progressBar;
+    private Handler mHandler = new Handler();
 
     public GameFragment() {
     }
@@ -38,6 +45,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_play_pause).setOnClickListener(this);
+        progressBar = view.findViewById(R.id.tank_health);
         final ViewTreeObserver observer = view.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -56,6 +64,28 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.startGame();
             }
         });
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(final Void... params) {
+                while (GameLogic.GAME.getProgress() >= 0) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(GameLogic.GAME.getProgress());
+                        }
+                    });
+                }
+                return null;
+            }
+
+        }.execute();
+
+
     }
 
     @Override
@@ -93,7 +123,6 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.pause_dialog_title)
                 .setMessage(R.string.pause_dialog_message)
-
                 .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -101,16 +130,14 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                         theGameEngine.resumeGame();
                     }
                 })
-
                 .setNegativeButton(R.string.stop, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         theGameEngine.stopGame();
-                        ((ScaffoldActivity) getActivity()).returnToMenu();
+                        ((ScaffoldActivity) getActivity()).navigateBack();
                     }
                 })
-
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
@@ -119,30 +146,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 })
                 .create()
                 .show();
-    }
 
-    private void finishGameAndShowGameOverDialog() {
-        theGameEngine.pauseGame();
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.game_over_dialog_title)
-                .setMessage(R.string.game_over_dialog_message)
-
-                .setPositiveButton(R.string.see_results, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        theGameEngine.stopGame();
-                    }
-                })
-
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        theGameEngine.stopGame();
-                    }
-                })
-                .create()
-                .show();
     }
 
     private void playOrPause() {
@@ -155,4 +159,5 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
             button.setText(R.string.resume);
         }
     }
+
 }
