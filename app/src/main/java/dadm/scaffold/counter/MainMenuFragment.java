@@ -7,14 +7,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
 
 
-public class MainMenuFragment extends BaseFragment implements View.OnClickListener {
+public class MainMenuFragment extends BaseFragment {
+
+    Button starbtn, resultsbtn;
+
     public MainMenuFragment() {
+
     }
 
     @Override
@@ -27,11 +32,9 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.btn_start).setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        ((ScaffoldActivity)getActivity()).startGame();
+        starbtn = view.findViewById(R.id.btn_start);
+        resultsbtn = view.findViewById(R.id.btn_results);
+        starbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).startGame());
+        resultsbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).stopGame());
     }
 }
