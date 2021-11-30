@@ -8,7 +8,7 @@ import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 import dadm.scaffold.sound.GameEvent;
 
-public class Bullet extends Sprite {
+public class InverseBullet extends Sprite {
 
     private double speedFactor;
 
@@ -16,9 +16,9 @@ public class Bullet extends Sprite {
 
     private SpaceShipPlayer parent;
 
-    public Bullet(GameEngine gameEngine) {
-        super(gameEngine, R.drawable.bullet);
-        bulletIkarugaState = IkarugaState.WHITE;
+    public InverseBullet(GameEngine gameEngine) {
+        super(gameEngine, R.drawable.bullet_invert);
+        bulletIkarugaState = IkarugaState.BLACK;
         speedFactor = gameEngine.pixelFactor * 300d / 1000d;
     }
 
@@ -51,13 +51,13 @@ public class Bullet extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        if (otherObject instanceof Asteroid) {
+        if (otherObject instanceof TankBullet) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
-            Asteroid a = (Asteroid) otherObject;
-            a.removeObject(gameEngine);
+            TankBullet t = (TankBullet) otherObject;
+            t.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
-            GameLogic.GAME.addPaperBallDestroyed();
+            GameLogic.GAME.addMarbleDestroyed();
         } else if (otherObject instanceof Tank) {
             removeObject(gameEngine);
             Tank t = (Tank) otherObject;
@@ -73,3 +73,4 @@ public class Bullet extends Sprite {
         }
     }
 }
+

@@ -14,6 +14,8 @@ public class GameLogic {
 
     private IkarugaState paperBallIkarugaState;
 
+    private IkarugaState bulletIkarugaState;
+
     private int playerLives;
 
     private int paperBallsDestroyed;
@@ -61,6 +63,7 @@ public class GameLogic {
     public void setPaperBallIkarugaState(IkarugaState paperBallIkarugaState) {
         this.paperBallIkarugaState = paperBallIkarugaState;
     }
+
 
     public IkarugaState getPlayerIkarugaState() {
         return playerIkarugaState;
@@ -115,6 +118,19 @@ public class GameLogic {
                 return R.drawable.red_paper_ball;
             case WHITE:
                 return R.drawable.white_paper_ball;
+            default:
+                return -1;
+        }
+    }
+
+    public int getDrawableBullet() {
+        switch (playerIkarugaState) {
+            case WHITE:
+            case RED:
+                return R.drawable.bullet;
+            case BLACK:
+            case BLUE:
+                return R.drawable.bullet_invert;
             default:
                 return -1;
         }
