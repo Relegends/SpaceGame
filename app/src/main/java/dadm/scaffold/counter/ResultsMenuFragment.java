@@ -29,6 +29,6 @@ public class ResultsMenuFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        ((ScaffoldActivity)getActivity()).startGame();
+        ((ScaffoldActivity) getActivity()).moveToGarage();
     }
 }
