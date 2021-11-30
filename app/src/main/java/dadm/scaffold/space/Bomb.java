@@ -19,7 +19,7 @@ public class Bomb extends Sprite {
     private double gravity;
 
     public Bomb(GameEngine gameEngine){
-        super(gameEngine, R.drawable.bullet);
+        super(gameEngine, R.drawable.bomb);
 
         gravity = 0.001;
 
