@@ -14,7 +14,7 @@ public class JoystickInputController extends InputController {
 
     public JoystickInputController(View view) {
         view.findViewById(R.id.joystick_main).setOnTouchListener(new JoystickTouchListener());
-        view.findViewById(R.id.joystick_touch_fire).setOnTouchListener(new FireButtonTouchListener());
+        view.findViewById(R.id.joystick_touch_color).setOnTouchListener(new FireButtonTouchListener());
         view.findViewById(R.id.joystick_touch_bomb).setOnTouchListener(new BombButtonTouchListener());
 
         double pixelFactor = view.getHeight() / 400d;

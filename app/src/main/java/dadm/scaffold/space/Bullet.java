@@ -55,6 +55,14 @@ public class Bullet extends Sprite {
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
             // Add some score
         }
+        else if (otherObject instanceof TankBullet) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            TankBullet t = (TankBullet) otherObject;
+            t.removeObject(gameEngine);
+            gameEngine.onGameEvent(GameEvent.AsteroidHit);
+            // Add some score
+        }
         else if (otherObject instanceof Tank) {
             removeObject(gameEngine);
             Tank t = (Tank) otherObject;
