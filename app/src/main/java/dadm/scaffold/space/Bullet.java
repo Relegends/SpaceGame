@@ -13,15 +13,14 @@ public class Bullet extends Sprite {
 
     private SpaceShipPlayer parent;
 
-    public Bullet(GameEngine gameEngine) {
+    public Bullet(GameEngine gameEngine){
         super(gameEngine, R.drawable.bullet);
 
         speedFactor = gameEngine.pixelFactor * 300d / 1000d;
     }
 
     @Override
-    public void startGame() {
-    }
+    public void startGame() {}
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
@@ -35,8 +34,8 @@ public class Bullet extends Sprite {
 
 
     public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY) {
-        positionX = initPositionX - width / 2;
-        positionY = initPositionY - height / 2;
+        positionX = initPositionX - width/2;
+        positionY = initPositionY - height/2;
         parent = parentPlayer;
     }
 
@@ -55,19 +54,20 @@ public class Bullet extends Sprite {
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
             // Add some score
-        } else if (otherObject instanceof TankBullet) {
+        }
+        else if (otherObject instanceof TankBullet) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
             TankBullet t = (TankBullet) otherObject;
             t.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
             // Add some score
-        } else if (otherObject instanceof Tank) {
+        }
+        else if (otherObject instanceof Tank) {
             removeObject(gameEngine);
             Tank t = (Tank) otherObject;
             t.health--;
             GameLogic.GAME.setProgress(t.health);
-            if (t.health < 50) t.changeDrawable(gameEngine, R.drawable.tank_sad);
             if (t.health <= 0) {
                 gameEngine.removeGameObject(otherObject);
                 //Add sound
