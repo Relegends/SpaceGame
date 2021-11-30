@@ -138,7 +138,7 @@ public class SpaceShipPlayer extends Sprite {
             bomb.init(this, positionX + width, positionY + height / 2);
             gameEngine.addGameObject(bomb);
             timeSinceLastBomb = 0;
-            gameEngine.onGameEvent(GameEvent.LaserFired);
+            gameEngine.onGameEvent(GameEvent.AsteroidHitBomb);
         } else {
             timeSinceLastBomb += elapsedMillis;
         }
@@ -161,6 +161,7 @@ public class SpaceShipPlayer extends Sprite {
         // GAME OVER
         if (GameLogic.GAME.getLives() <= 0) {
             gameEngine.removeGameObject(this);
+            gameEngine.onGameEvent(GameEvent.GameOver);
         }
     }
 
