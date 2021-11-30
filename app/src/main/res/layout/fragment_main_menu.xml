@@ -1,22 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <TextView
-        android:layout_gravity="center_horizontal|top"
-        style="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/game_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/start" />
+        <TextView
+            android:id="@+id/mainText"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="300dp"
+            android:layout_marginRight="300dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/paperclip_bold"
+            android:text="@string/game_title"
+            android:textSize="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="300dp"
+            android:layout_marginRight="300dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/holo_orange_light"
+            android:fontFamily="@font/paperclip_med"
+            android:text="@string/start"
+            android:textColor="@android:color/black"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_results"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainText" />
+
+        <Button
+            android:id="@+id/btn_results"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="300dp"
+            android:layout_marginRight="300dp"
+            android:layout_marginBottom="100dp"
+            android:background="@android:color/holo_orange_light"
+            android:fontFamily="@font/paperclip_med"
+            android:text="@string/results"
+            android:textColor="@android:color/black"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_start" />
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
