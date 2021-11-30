@@ -34,7 +34,7 @@ public class MainMenuFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         starbtn = view.findViewById(R.id.btn_start);
         resultsbtn = view.findViewById(R.id.btn_results);
-        starbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).moveToGarage());
+        starbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).startGame());
         resultsbtn.setOnClickListener(v -> ((ScaffoldActivity)getActivity()).stopGame());
     }
 }

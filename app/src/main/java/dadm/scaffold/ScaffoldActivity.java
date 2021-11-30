@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import dadm.scaffold.counter.GameFragment;
-import dadm.scaffold.counter.GarageFragment;
 import dadm.scaffold.counter.MainMenuFragment;
 import dadm.scaffold.counter.ResultsMenuFragment;
 import dadm.scaffold.sound.SoundManager;
@@ -37,22 +36,17 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public void startGame() {
         // Navigate the the game fragment, which makes the start automatically
-        navigateToFragment(new GameFragment());
-    }
-
-    public void moveToGarage() {
-        // Navigate the the garage to select a plane to play
-        navigateToFragment(new GarageFragment());
+        navigateToFragment( new GameFragment());
     }
 
     public void stopGame() {
         // Stop and show the results menu
-        navigateToFragment(new ResultsMenuFragment());
+        navigateToFragment( new ResultsMenuFragment());
     }
 
     public void returnToMenu() {
         // Stop and show the results menu
-        navigateToFragment(new MainMenuFragment());
+        navigateToFragment( new MainMenuFragment());
     }
 
     private void navigateToFragment(BaseFragment dst) {
@@ -63,17 +57,17 @@ public class ScaffoldActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void navigateBack() {
-        // Do a push on the navigation history
-        super.onBackPressed();
-    }
-
     @Override
     public void onBackPressed() {
         final BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT);
         if (fragment == null || !fragment.onBackPressed()) {
             super.onBackPressed();
         }
+    }
+
+    public void navigateBack() {
+        // Do a push on the navigation history
+        super.onBackPressed();
     }
 
     @Override
@@ -86,7 +80,8 @@ public class ScaffoldActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LOW_PROFILE);
-            } else {
+            }
+            else {
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_FULLSCREEN

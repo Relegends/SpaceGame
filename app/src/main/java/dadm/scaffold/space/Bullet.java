@@ -67,12 +67,10 @@ public class Bullet extends Sprite {
             removeObject(gameEngine);
             Tank t = (Tank) otherObject;
             t.health--;
-            gameEngine.onGameEvent(GameEvent.TankHit);
             GameLogic.GAME.setProgress(t.health);
             if (t.health <= 0) {
                 gameEngine.removeGameObject(otherObject);
-                gameEngine.onGameEvent(GameEvent.TankDestroyed);
-                gameEngine.onGameEvent(GameEvent.Win);
+                //Add sound
             }
         }
     }
