@@ -5,5 +5,9 @@ public enum GameEvent {
     AsteroidHitBomb,
     SpaceshipHit,
     LaserFired,
+    TankDestroyed,
+    TankHit,
+    Ikaruga,
+    Win,
     GameOver
 }

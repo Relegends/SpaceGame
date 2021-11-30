@@ -55,8 +55,13 @@ public final class SoundManager {
 		loadEventSound(context, GameEvent.SpaceshipHit, "damagePlane.wav");
 		loadEventSound(context, GameEvent.LaserFired, "shot.wav");
 
-		loadEventSound(context, GameEvent.GameOver, "lose.wav");
+		loadEventSound(context, GameEvent.TankHit, "tankHit.wav");
+		loadEventSound(context, GameEvent.TankDestroyed, "tankDestroyed.wav");
 
+		loadEventSound(context, GameEvent.GameOver, "lose.wav");
+		loadEventSound(context, GameEvent.Win, "victory.wav");
+
+		loadEventSound(context, GameEvent.Ikaruga, "change.wav");
 	}
 
 	private void loadMusic() {
