@@ -15,7 +15,7 @@ public class SpaceShipPlayer extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final int INITIAL_BOMBS_POOL_AMOUNT = 1;
-    private static final long TIME_BETWEEN_BULLETS = 250;
+    private static final long TIME_BETWEEN_BULLETS = 500;
     private static final long TIME_BETWEEN_BOMBS = 3000;
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Bomb> bombs = new ArrayList<Bomb>();

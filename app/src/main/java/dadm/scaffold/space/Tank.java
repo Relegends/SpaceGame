@@ -13,7 +13,7 @@ import dadm.scaffold.sound.GameEvent;
 public class Tank extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 10;
-    private static final int TIME_BETWEEN_BULLETS = 500;
+    private static final int TIME_BETWEEN_BULLETS = 1000;
     private long currentMillis;
     private List<TankBullet> tankBulletPool = new ArrayList<TankBullet>();
     private int bulletsFired;
