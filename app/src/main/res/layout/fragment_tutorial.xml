@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tutorial"
+    android:scaleX="1.2"
+    android:scaleY="1.1"
+    tools:context=".Tutorial">
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="286dp"
+            android:layout_marginLeft="286dp"
+            android:layout_marginTop="181dp"
+            android:layout_marginEnd="315dp"
+            android:layout_marginRight="315dp"
+            android:layout_marginBottom="182dp"
+            android:background="@android:color/holo_orange_dark"
+            android:fontFamily="@font/paperclip_med"
+            android:text="@string/start"
+            android:textColor="@android:color/black"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

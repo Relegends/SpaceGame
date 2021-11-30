@@ -45,6 +45,10 @@ public class ScaffoldActivity extends AppCompatActivity {
         navigateToFragment(new GarageFragment());
     }
 
+    public void moveToTutorial() {
+        navigateToFragment(new Tutorial());
+    }
+
     public void stopGame() {
         // Stop and show the results menu
         navigateToFragment(new ResultsMenuFragment());
