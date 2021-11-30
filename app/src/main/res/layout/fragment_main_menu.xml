@@ -27,6 +27,7 @@
             android:textSize="60dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_start"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,40 +38,21 @@
             android:layout_gravity="center"
             android:layout_marginStart="300dp"
             android:layout_marginLeft="300dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="300dp"
             android:layout_marginRight="300dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="120dp"
             android:background="@android:color/holo_orange_light"
             android:fontFamily="@font/paperclip_med"
             android:text="@string/start"
             android:textColor="@android:color/black"
             android:textSize="34sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_results"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainText" />
 
-        <Button
-            android:id="@+id/btn_results"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="300dp"
-            android:layout_marginLeft="300dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="300dp"
-            android:layout_marginRight="300dp"
-            android:layout_marginBottom="100dp"
-            android:background="@android:color/holo_orange_light"
-            android:fontFamily="@font/paperclip_med"
-            android:text="@string/results"
-            android:textColor="@android:color/black"
-            android:textSize="34sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_start" />
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
